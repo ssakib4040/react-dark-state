@@ -1,0 +1,6 @@
+src/
+node_modules/
+.gitignore
+
+# build test package
+react-dark-state-*

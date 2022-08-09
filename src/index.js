@@ -1,17 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { useState, useEffect } from "react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function useDarkState() {
+  const [reactDarkState, setReactDarkState] = useState(null);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  useEffect(() => {
+    function detectDarkMode() {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        return "dark";
+      } else {
+        return "light";
+      }
+    }
+
+    // initial
+    setReactDarkState(detectDarkMode());
+
+    // listen for changes
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        const newColorScheme = event.matches ? "dark" : "light";
+
+        setReactDarkState(newColorScheme);
+      });
+  }, []);
+
+  return reactDarkState;
+}
+
+export default useDarkState;
