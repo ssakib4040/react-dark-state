@@ -1,6 +1,6 @@
 {
   "name": "react-dark-state",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Dark State a custom react hook to detect dark mode",
   "repository": "https://github.com/ssakib4040/react-dark-state",
   "author": "Sadman Sakib",
